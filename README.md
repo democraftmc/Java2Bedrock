@@ -1,6 +1,5 @@
-## Support (we have stopped updating - we are preparing for a new project)
-
-https://discord.gg/uRNPQhkENk
+# Java2Bedrock
+Fork of https://github.com/AZPixel-Team/Java2Bedrock
 
 ### Todo-List
   - Support Custom Block (Ready for test and use)
@@ -25,10 +24,6 @@ https://discord.gg/uRNPQhkENk
 ## Usage
 
 **Please disable itemadder protection unzip**
-
-### Donate
-
-  [![Donate with PayPal](https://raw.githubusercontent.com/stefan-niedermann/paypal-donate-button/master/paypal-donate-button.png)](https://paypal.me/LZ5509)
 
 ### Local
 
