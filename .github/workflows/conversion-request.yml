@@ -84,14 +84,14 @@ jobs:
           fetch-depth: 0
       - name: Enable default asset cache
         id: cache-default-assets
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: /home/runner/work/java2bedrock.sh/java2bedrock.sh/staging/default_assets.zip
           key: ${{ runner.os }}-${{ needs.get-pack-info.outputs.default_assets_version }}
       - name: Install NodeJS
         uses: actions/setup-node@v4
         with:
-          node-version: 17
+          node-version: 20
       - name: Install Python
         uses: actions/setup-python@v5
         with:
@@ -100,6 +100,7 @@ jobs:
         run: |
           sudo apt-get install -y moreutils zip
           yarn global add spritesheet-js
+          sudo apt-get install -y imagemagick
           pip install Pillow
           pip install requests
           pip install jproperties
@@ -153,7 +154,7 @@ jobs:
     steps:
       - name: Post Result
         id: post-result
-        uses: peter-evans/create-or-update-comment@v2
+        uses: peter-evans/create-or-update-comment@v4
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
@@ -181,7 +182,7 @@ jobs:
     steps:
       - name: Post Result
         id: post-result
-        uses: peter-evans/create-or-update-comment@v2
+        uses: peter-evans/create-or-update-comment@v4
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
