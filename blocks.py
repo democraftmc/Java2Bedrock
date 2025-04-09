@@ -18,23 +18,25 @@ for file in files:
         data = json.load(f)["variants"]
         print(data)
         for k, v in data.items():
-            print(k,v)
             if not("block/original" in v["model"] or "block/tripwire_attached_n" in v["model"]):
-                print(v["model"])
+                print("KV:", k, v["model"])
                 am = blocks_util.get_am_file(v["model"])
-                print(am)
+                print("AM", am)
                 if am == None: continue
                 with open(am, "r") as f:
+                    print("am oppening")
                     data_am = json.load(f)
                     gmdl = data_am["minecraft:attachable"]["description"]["identifier"].split(":")[1]
                     geometry = blocks_util.get_geometry_block(v["model"])
                     texture = blocks_util.create_terrain_texture(gmdl, data_am["minecraft:attachable"]["description"]["textures"]["default"])
                 if geometry == "geometry.cube":
                     with open(am, "w") as f:
+                        print("cubik")
                         data_am["minecraft:attachable"]["description"]["geometry"]["default"] = "geometry.cube"
                         data_am["minecraft:attachable"]["description"]["animations"] = {"thirdperson_main_hand":"animation.geo_cube.thirdperson_main_hand","thirdperson_off_hand":"animation.geo_cube.thirdperson_off_hand","thirdperson_head":"animation.geo_cube.head","firstperson_main_hand":"animation.geo_cube.firstperson_main_hand","firstperson_off_hand":"animation.geo_cube.firstperson_off_hand","firstperson_head":"animation.geyser_custom.disable"}
                         json.dump(data_am, f)
                 if block == "tripwire":
                     sstate = k.split(",")
                     k = f"{sstate[0]},{sstate[4]},{sstate[1]},{sstate[2]},{sstate[6]},{sstate[3]},{sstate[5]}"
+                print("almost the end")
                 blocks_util.regsister_block(block, gmdl, k, texture, block_material, geometry)
