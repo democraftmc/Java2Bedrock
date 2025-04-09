@@ -22,13 +22,15 @@ for file in files:
                 print("KV:", k, v["model"])
                 am = blocks_util.get_am_file(v["model"])
                 print("AM", am)
-                if am == None: continue
-                with open(am, "r") as f:
-                    print("am oppening")
-                    data_am = json.load(f)
-                    gmdl = data_am["minecraft:attachable"]["description"]["identifier"].split(":")[1]
-                    geometry = blocks_util.get_geometry_block(v["model"])
-                    texture = blocks_util.create_terrain_texture(gmdl, data_am["minecraft:attachable"]["description"]["textures"]["default"])
+                if am == None:
+                    with open(am, "r") as f:
+                        print("am oppening")
+                        data_am = json.load(f)
+                        gmdl = data_am["minecraft:attachable"]["description"]["identifier"].split(":")[1]
+                        geometry = blocks_util.get_geometry_block(v["model"])
+                        texture = blocks_util.create_terrain_texture(gmdl, data_am["minecraft:attachable"]["description"]["textures"]["default"])
+                else:
+                    print("Need am sub default function")
                 if geometry == "geometry.cube":
                     with open(am, "w") as f:
                         print("cubik")
