@@ -6,6 +6,7 @@ def get_am_file(model):
     namespace = model.split(":")[0]
     path = model.split(":")[1]
     files = glob.glob(f"staging/target/rp/attachables/{namespace}/{path}*.json")
+    print("AM2 ", namespace, path, files)
     for fa in files:
         if f"{path.split('/')[-1]}." in fa:
             return fa
