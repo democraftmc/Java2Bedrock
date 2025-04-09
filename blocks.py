@@ -3,19 +3,22 @@ import glob
 import os
 import blocks_util
 
-#Not Support For Fire
+print("shjsjzkdktodkgdgkziteitzufzitdkgdmhgkmcmjgiyeirzit")
 files = glob.glob("pack/assets/minecraft/blockstates/*.json")
 if files != []:
     blocks_util.write_animated_cube()
     blocks_util.write_geometry_cube()
 for file in files:
+    print(file)
     file = file.replace("\\", "/")
     block = (file.split("/")[-1]).replace(".json", "")
     if (block == "fire"): continue
     block_material = os.getenv("BLOCK_MATERIAL")
     blocks_util.write_mapping_block(block)
     with open(file, "r") as f:
+        print(f)
         data = json.load(f)["variants"]
+        print(data)
         for k, v in data.items():
             if not("block/original" in v["model"] or "block/tripwire_attached_n" in v["model"]):
                 print(v["model"])
