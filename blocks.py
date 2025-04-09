@@ -3,7 +3,6 @@ import glob
 import os
 import blocks_util
 
-print("shjsjzkdktodkgdgkziteitzufzitdkgdmhgkmcmjgiyeirzit")
 files = glob.glob("pack/assets/minecraft/blockstates/*.json")
 if files != []:
     blocks_util.write_animated_cube()
@@ -16,13 +15,14 @@ for file in files:
     block_material = os.getenv("BLOCK_MATERIAL")
     blocks_util.write_mapping_block(block)
     with open(file, "r") as f:
-        print(f)
         data = json.load(f)["variants"]
         print(data)
         for k, v in data.items():
+            print(k,v)
             if not("block/original" in v["model"] or "block/tripwire_attached_n" in v["model"]):
                 print(v["model"])
                 am = blocks_util.get_am_file(v["model"])
+                print(am)
                 if am == None: continue
                 with open(am, "r") as f:
                     data_am = json.load(f)
