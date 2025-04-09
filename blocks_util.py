@@ -30,8 +30,11 @@ def write_mapping_block(block: str):
 def regsister_block(block: str, gmdl: str, state: str, texture: str, block_material: str, geometry: str):
     with open(f"staging/target/geyser_block_{block}_mappings.json", "r") as f:
         data = json.load(f)
+        print("openin shish")
     with open(f"staging/target/geyser_block_{block}_mappings.json", "w") as f:
+        print("doin shish")
         data["blocks"][f"minecraft:{block}"]["state_overrides"][state] = {"name":f"block_{gmdl}","display_name":f"block_{gmdl}","geometry":geometry,"material_instances":{"*":{"texture":texture,"render_method":block_material,"face_dimming":True,"ambient_occlusion":True}}}
+        print(data)
         json.dump(data, f, indent=4)
 def create_terrain_texture(gmdl: str, texture_file: str):
     with open("staging/target/rp/textures/terrain_texture.json", "r") as f:
