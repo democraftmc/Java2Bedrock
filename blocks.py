@@ -36,7 +36,7 @@ for file in files:
                     print("BLOCK", block)
                     geometry = blocks_util.get_geometry_block(v["model"])
                     print("GEOMETRY", geometry)
-                    default_texture = f"textures/{model.split(':')[0]}/{model.split(':')[1]}"  # <-- FALLBACK PATH
+                    default_texture = f"textures/{v['model'].split(':')[0]}/{v['model'].split(':')[1]}"  # <-- FALLBACK PATH
                     print("DEFAULT TEXTURE", default_texture)
                     texture = blocks_util.create_terrain_texture(gmdl, default_texture)
                     print("TEXTURE", texture)
