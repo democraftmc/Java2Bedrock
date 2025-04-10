@@ -44,17 +44,20 @@ def create_terrain_texture(gmdl: str, texture_file: str):
         data["texture_data"][f"block_{gmdl}"] = {"textures": texture_file}
         json.dump(data, f, indent=4)
     return f"block_{gmdl}"
+
 def get_geometry_block(model: str):
     namespace = model.split(":")[0]
     path = model.split(":")[1]
-    geometry_file = glob.glob(f"staging/target/rp/models/blocks/{namespace}/{path}.json")[0]
-    if geometry_file != None:
+    files = glob.glob(f"staging/target/rp/models/blocks/{namespace}/{path}.json")
+    if not files:
+        return "geometry.cube"
+    geometry_file = files[0]
+    try:
         with open(geometry_file, "r") as f:
             geo_data = f.read()
-            if geo_data == "":
-                os.remove(geometry_file)
+            if not geo_data.strip():
                 return "geometry.cube"
-            else:
-                data = json.loads(geo_data)
-                return data["minecraft:geometry"][0]["description"]["identifier"]
-    else: return "geometry.cube"
+            data = json.loads(geo_data)
+            return data["minecraft:geometry"][0]["description"]["identifier"]
+    except (json.JSONDecodeError, KeyError, IndexError):
+        return "geometry.cube"
