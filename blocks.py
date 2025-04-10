@@ -17,7 +17,7 @@ for file in files:
     blocks_util.write_mapping_block(block)
     with open(file, "r") as f:
         data = json.load(f)["variants"]
-        print(data)
+        #print(data)
         for k, v in data.items():
             if not("block/original" in v["model"] or "block/tripwire_attached_n" in v["model"]):
                 print("KV:", k, v["model"])
@@ -33,9 +33,13 @@ for file in files:
                 else:
                     print("Using block name for fallback")
                     gmdl = block  # <-- USE BLOCK NAME HERE
+                    print("BLOCK", block)
                     geometry = blocks_util.get_geometry_block(v["model"])
+                    print("GEOMETRY", geometry)
                     default_texture = f"textures/blocks/{block}.png"  # <-- FALLBACK PATH
+                    print("DEFAULT TEXTURE", default_texture)
                     texture = blocks_util.create_terrain_texture(gmdl, default_texture)
+                    print("TEXTURE", texture)
                 
                 if geometry == "geometry.cube":
                     with open(am, "w") as f:
