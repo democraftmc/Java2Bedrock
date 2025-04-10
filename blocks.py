@@ -41,12 +41,12 @@ for file in files:
                     texture = blocks_util.create_terrain_texture(gmdl, default_texture)
                     print("TEXTURE", texture)
                 
-                if geometry == "geometry.cube":
-                    with open(am, "w") as f:
-                        print("cubik")
-                        data_am["minecraft:attachable"]["description"]["geometry"]["default"] = "geometry.cube"
-                        data_am["minecraft:attachable"]["description"]["animations"] = {"thirdperson_main_hand":"animation.geo_cube.thirdperson_main_hand","thirdperson_off_hand":"animation.geo_cube.thirdperson_off_hand","thirdperson_head":"animation.geo_cube.head","firstperson_main_hand":"animation.geo_cube.firstperson_main_hand","firstperson_off_hand":"animation.geo_cube.firstperson_off_hand","firstperson_head":"animation.geyser_custom.disable"}
-                        json.dump(data_am, f)
+                #if geometry == "geometry.cube":
+                    #with open(am, "w") as f:
+                        #print("cubik")
+                        #data_am["minecraft:attachable"]["description"]["geometry"]["default"] = "geometry.cube"
+                        #data_am["minecraft:attachable"]["description"]["animations"] = {"thirdperson_main_hand":"animation.geo_cube.thirdperson_main_hand","thirdperson_off_hand":"animation.geo_cube.thirdperson_off_hand","thirdperson_head":"animation.geo_cube.head","firstperson_main_hand":"animation.geo_cube.firstperson_main_hand","firstperson_off_hand":"animation.geo_cube.firstperson_off_hand","firstperson_head":"animation.geyser_custom.disable"}
+                        #json.dump(data_am, f)
                 if block == "tripwire":
                     sstate = k.split(",")
                     k = f"{sstate[0]},{sstate[4]},{sstate[1]},{sstate[2]},{sstate[6]},{sstate[3]},{sstate[5]}"
