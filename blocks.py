@@ -7,10 +7,11 @@ files = glob.glob("pack/assets/minecraft/blockstates/*.json")
 if files != []:
     blocks_util.write_animated_cube()
     blocks_util.write_geometry_cube()
+
 for file in files:
     print(file)
     file = file.replace("\\", "/")
-    block = (file.split("/")[-1]).replace(".json", "")
+    block = (file.split("/")[-1]).replace(".json", "")  # <-- BLOCK NAME EXTRACTED
     if (block == "fire"): continue
     block_material = os.getenv("BLOCK_MATERIAL")
     blocks_util.write_mapping_block(block)
@@ -30,13 +31,12 @@ for file in files:
                         geometry = blocks_util.get_geometry_block(v["model"])
                         texture = blocks_util.create_terrain_texture(gmdl, data_am["minecraft:attachable"]["description"]["textures"]["default"])
                 else:
-                    print("AM file not found, using defaults.")
-                    # Default values for missing AM files
-                    gmdl = block  # Use the block name as a fallback identifier
-                    geometry = blocks_util.get_geometry_block(v["model"])  # Fallback handled in the function
-                    # Generate a default texture path; adjust as per your texture setup
-                    default_texture = f"textures/blocks/{block}"
+                    print("Using block name for fallback")
+                    gmdl = block  # <-- USE BLOCK NAME HERE
+                    geometry = blocks_util.get_geometry_block(v["model"])
+                    default_texture = f"textures/blocks/{block}.png"  # <-- FALLBACK PATH
                     texture = blocks_util.create_terrain_texture(gmdl, default_texture)
+                
                 if geometry == "geometry.cube":
                     with open(am, "w") as f:
                         print("cubik")
