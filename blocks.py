@@ -47,4 +47,6 @@ for file in files:
                     sstate = k.split(",")
                     k = f"{sstate[0]},{sstate[4]},{sstate[1]},{sstate[2]},{sstate[6]},{sstate[3]},{sstate[5]}"
                 print("almost the end")
+
+                print("BGKTBMG", block, gmdl, k, texture, block_material, geometry)
                 blocks_util.regsister_block(block, gmdl, k, texture, block_material, geometry)
